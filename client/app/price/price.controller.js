@@ -1,11 +1,13 @@
 'use strict';
 
 angular.module('tphPricesApp')
-    .controller('PriceCtrl', function ($scope, $http, config, socket) {
+    .controller('PriceCtrl', function ($scope, $http, $upload, config, countryService, socket) {
         console.log('a', config.REST_URL);
         $scope.products = [];
         $scope.product = {};
         $scope.errors = {};
+        $scope.country = {};
+        $scope.countries = countryService.countries;
 
         $scope.addPrice = function (form) {
             $scope.submitted = true;
@@ -26,6 +28,11 @@ angular.module('tphPricesApp')
         };
 
         $http.get(config.REST_URL).success(function (response) {
+            console.log('response', response);
+            //socket.syncUpdates('thing', $scope.products);
+        });
+
+        $http.get(config.REST_URL+'projects/healthcrowd').success(function (response) {
             console.log('response', response);
             //socket.syncUpdates('thing', $scope.products);
         });
