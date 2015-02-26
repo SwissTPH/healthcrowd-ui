@@ -11,13 +11,10 @@ also for user administration:
 you require MongoDb
 
 
-syzer
-------
-....
-
 Credits
 --------
-https://github.com/DaftMonk/generator-angular-fullstack/
+[syzer](https://github.com/syzer)
+[DaftMonk](https://github.com/DaftMonk/generator-angular-fullstack/)
 
 
 TODO
