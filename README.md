@@ -14,6 +14,7 @@ you require MongoDb
 Credits
 --------
 [syzer](https://github.com/syzer)
+
 [DaftMonk](https://github.com/DaftMonk/generator-angular-fullstack/)
 
 
