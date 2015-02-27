@@ -2,6 +2,7 @@
 
 angular.module('tphPricesApp', [
     '_',
+    'ngAnimate',
     'ngCookies',
     'ngResource',
     'ngSanitize',
