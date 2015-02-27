@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">Prices:</h1>
-            <form ng-hide="submitted" class="form" name="form" ng-submit="addPrice(form)">
+            <form ng-hide="submitted" class="form cssSlideUp" name="form" ng-submit="addPrice(form)">
                 <div class="form-group" ng-class="{ 'has-success': form.name.$valid && submitted,
                                             'has-error': form.name.$invalid && submitted }">
                     <label>Name of Product</label>
@@ -107,7 +107,7 @@
     </div>
 </div>
 
-<canvas ng-show="submitted" id="chartjs-mount" width="350" height="350"></canvas>
+<canvas class="center-block" ng-show="submitted" id="chartjs-mount" width="700" height="350"></canvas>
 
 <div ng-show="submitted" ng-include="'app/recommendation/recommendation.html'"></div>
 
