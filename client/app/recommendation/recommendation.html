@@ -5,8 +5,8 @@
             <h5 class="page-header">Based on your location we found those cheaper substitutes</h5>
             <ul class="list-group">
                 <li class="list-group-item" ng-repeat="drug in drugs">
-                    <strong>{{drug.name}}</strong><br>
-                    <span class="text-muted">{{drug.price}}</span>
+                    <strong>{{drug.name}}</strong>[{{drug.active_ingredient}} {{drug.quantity_per_pill}}]<br>
+                    <span class="text-muted">{{drug.price}} {{drug.price_currency}}</span>
                     <a ng-click="delete(drug)" class="trash"><span
                         class="glyphicon glyphicon-trash pull-right"></span></a>
                 </li>
