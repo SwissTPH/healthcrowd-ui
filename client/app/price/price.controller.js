@@ -1,13 +1,10 @@
 'use strict';
 
 angular.module('tphPricesApp')
-    .controller('PriceCtrl', function ($scope, $http, $upload, config, countryService, socket) {
-        console.log('a', config.REST_URL);
+    .controller('PriceCtrl', function ($scope, $http, $upload, config, socket) {
         $scope.drugs = [];
         $scope.drug = {};
         $scope.errors = {};
-        $scope.country = {};
-        $scope.countries = countryService.countries;
 
         $scope.addPrice = function (form) {
             $scope.submitted = true;
@@ -37,7 +34,7 @@ angular.module('tphPricesApp')
             //socket.syncUpdates('thing', $scope.products);
         });
 
-        //TODO
+        //TODO chart refactor
         // TODO move to chartService, not important
         var daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
         var chartOptions = {
@@ -78,7 +75,9 @@ angular.module('tphPricesApp')
             prices.set(day, prices.get(day) + delta);
         };
 
-        setTimeout(randomlyUpdateForecast, 10000);
+        setTimeout(randomlyUpdateForecast, 25000);
+        //end of chart refactor
+
 
         //TODO cleanup file upload
         //$scope.usingFlash = FileAPI && FileAPI.upload != null;
@@ -131,7 +130,7 @@ angular.module('tphPricesApp')
         };
         //end of clenup
 
-        $http.get('/api/things').success(function (drugs) {
+        $http.get('/api/drugs').success(function (drugs) {
             $scope.drugs = drugs;
             socket.syncUpdates('drug', $scope.drugs);
         });
@@ -144,13 +143,12 @@ angular.module('tphPricesApp')
             $scope.drug = {};
         };
 
-        $scope.deleteDrug = function (drug) {
+        $scope.delete = function (drug) {
             $http.delete('/api/drugs/' + drug._id);
         };
 
         $scope.$on('$destroy', function () {
             socket.unsyncUpdates('drug');
         });
-
 
     });

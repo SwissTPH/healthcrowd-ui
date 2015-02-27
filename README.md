@@ -23,8 +23,9 @@ TODO
 ----
 [ ] main -> rest prices count
 [ ] recommendation drugs
+[ ] price upload display
 
-
+```js
 db.addUser(
 { user: "tph-prices",
   pwd: "tph-prices1",
@@ -32,7 +33,7 @@ db.addUser(
     { role: "readWrite", db: "tphprices-dev" }
   ]
 })
-
+```
 
 API
 ---
