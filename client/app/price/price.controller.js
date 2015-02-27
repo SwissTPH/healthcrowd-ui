@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('tphPricesApp')
-    .controller('PriceCtrl', function ($scope, $http, $upload, config, socket) {
+    .controller('PriceCtrl', function ($scope, $http, $upload, config, alertService, socket) {
         $scope.drugs = [];
         $scope.drug = {};
         $scope.errors = {};
@@ -18,10 +18,12 @@ angular.module('tphPricesApp')
                 .success(function (data, status, headers, config) {
                     // this callback will be called asynchronously
                     // when the response is available
+                    alertService.info('Thank you for your contribution');
                 })
                 .error(function (data, status, headers, config) {
                     // called asynchronously if an error occurs
                     // or server returns response with an error status.
+                    alertService.info('Ooops. we are experiencing errors.');
                 });
         };
 
@@ -30,7 +32,12 @@ angular.module('tphPricesApp')
             //socket.syncUpdates('thing', $scope.products);
         });
 
-        $http.get(config.REST_URL + 'projects/healthcrowd').success(function (response) {
+        //$http.get(config.REST_URL + 'projects/healthcrowd').success(function (response) {
+        //    console.log('response', response);
+            //socket.syncUpdates('thing', $scope.products);
+        //});
+
+        $http.get(config.REST_URL + 'admin/projects/healthcrowd/assets').success(function (response) {
             console.log('response', response);
             //socket.syncUpdates('thing', $scope.products);
         });

@@ -9,6 +9,7 @@ var DrugSchema = new Schema({
     active: Boolean,
     active_ingredient: String,
     price_currency: String,
+    quantity_per_pill: String,
     //timeStamp: new Date()
 });
 

@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('tphPricesApp', [
+    '_',
     'ngCookies',
     'ngResource',
     'ngSanitize',
@@ -8,7 +9,9 @@ angular.module('tphPricesApp', [
     'ui.router',
     'ui.bootstrap',
     'ui.select',
-    'angularFileUpload'
+    'angularFileUpload',
+    'alert',
+    'toaster'     // also for alerts
 ])
     .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
         $urlRouterProvider
