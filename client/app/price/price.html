@@ -4,14 +4,14 @@
     <div class="row">
         <div class="col-lg-12">
             <h1 class="page-header">Prices:</h1>
-            <form class="form" name="form" ng-submit="addPrice(form)" novalidate>
+            <form class="form" name="form" ng-submit="addPrice(form)">
 
                 <div class="form-group" ng-class="{ 'has-success': form.name.$valid && submitted,
                                             'has-error': form.name.$invalid && submitted }">
                     <label>Name of Product</label>
 
                     <input type="text" name="name" class="form-control"
-                           ng-model="product.name"
+                           ng-model="drug.name"
                            required/>
 
                     <p class="help-block"
@@ -25,7 +25,7 @@
                     <label>Price</label>
 
                     <input type=number name="price" class="form-control"
-                           ng-model="product.price"
+                           ng-model="drug.price"
                            required
                            mongoose-error/>
 
@@ -42,7 +42,7 @@
                         {{ errors.price }}
                     </p>
                     <label>Currency</label>
-                    <select class="form-control" ng-model="product.price_currency" name="price_currency">
+                    <select class="form-control" ng-model="drug.price_currency" name="price_currency">
                         <option>CHF</option>
                         <option>EUR</option>
                         <option>USD</option>
@@ -54,7 +54,7 @@
                     <label>Active ingredient</label>
 
                     <input type="active_ingredient" name="active_ingredient" class="form-control"
-                           ng-model="product.active_ingredient"
+                           ng-model="drug.active_ingredient"
                            ng-minlength="3"
                            mongoose-error/>
 
@@ -70,7 +70,7 @@
 
                 <div class="form-group">
                     <label>Upload picture</label>
-                    <input type="file" required="" ng-file-change="generateThumb(picFile[0], $files)" accept="image/*" name="file" ng-model="picFile" ng-file-select="" class="ng-dirty ng-valid ng-valid-required">
+                    <input type="file" ng-file-change="generateThumb(picFile[0], $files)" accept="image/*" name="file" ng-model="picFile" ng-file-select="" class="ng-dirty ng-valid ng-valid-required">
                     <img ng-show="picFile[0].dataUrl != null" ng-src="{{picFile[0].dataUrl}}" class="thumb1">
 		            <span class="progress" ng-show="picFile[0].progress >= 0">
 			            <div class="ng-binding" style="width:{{picFile[0].progress}}%" ng-bind="picFile[0].progress + '%'"></div>
@@ -88,9 +88,9 @@
     </div>
 </div>
 
-<canvas id="chartjs-mount" width="350" height="350"></canvas>
+<canvas ng-show="submitted" id="chartjs-mount" width="350" height="350"></canvas>
 
-<div ng-include="'app/recommendation/recommendation.html'"></div>
+<div ng-show="submitted" ng-include="'app/recommendation/recommendation.html'"></div>
 
 <div>{{drugs|json}}</div>
 

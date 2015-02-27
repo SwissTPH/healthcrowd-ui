@@ -8,6 +8,7 @@ var DrugSchema = new Schema({
     price: Number,
     active: Boolean,
     active_ingredient: String,
+    price_currency: String,
     //timeStamp: new Date()
 });
 

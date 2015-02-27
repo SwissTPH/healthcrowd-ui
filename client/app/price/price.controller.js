@@ -7,21 +7,22 @@ angular.module('tphPricesApp')
         $scope.errors = {};
 
         $scope.addPrice = function (form) {
-            $scope.submitted = true;
+            console.log('submitted', form, $scope.drug);
 
-            if (form.$valid) {
-                Auth.login({
-                    email: $scope.user.email,
-                    password: $scope.user.password
-                })
-                    .then(function () {
-                        // Logged in, redirect to home
-                        $location.path('/');
-                    })
-                    .catch(function (err) {
-                        $scope.errors.other = err.message;
-                    });
+            if (!form.$valid) {
+                return;
             }
+            $scope.submitted = true;
+            $http
+                .post('/api/drugs', $scope.drug)
+                .success(function (data, status, headers, config) {
+                    // this callback will be called asynchronously
+                    // when the response is available
+                })
+                .error(function (data, status, headers, config) {
+                    // called asynchronously if an error occurs
+                    // or server returns response with an error status.
+                });
         };
 
         $http.get(config.REST_URL).success(function (response) {
@@ -75,7 +76,7 @@ angular.module('tphPricesApp')
             prices.set(day, prices.get(day) + delta);
         };
 
-        setTimeout(randomlyUpdateForecast, 25000);
+        setTimeout(randomlyUpdateForecast, 10000);
         //end of chart refactor
 
 
