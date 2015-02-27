@@ -15,9 +15,27 @@ Credits
 --------
 [syzer](https://github.com/syzer)
 
-[DaftMonk](https://github.com/DaftMonk/generator-angular-fullstack/)
+[DaftMonk](https://github.com/DaftMonk/)
 
+add yourself here!
 
 TODO
 ----
-main -> rest prices count
+[ ] main -> rest prices count
+[ ] recommendation drugs
+
+
+db.addUser(
+{ user: "tph-prices",
+  pwd: "tph-prices1",
+  roles: [
+    { role: "readWrite", db: "tphprices-dev" }
+  ]
+})
+
+
+API
+---
+rest
+
+curl http://localhost:9000/api/things
