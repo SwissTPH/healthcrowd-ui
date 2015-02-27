@@ -3,6 +3,12 @@
 angular.module('tphPricesApp')
     .controller('MainCtrl', function ($scope, $http, socket) {
         $scope.awesomeThings = [];
+        $scope.drugs = [];
+
+        $http.get('/api/drugs').success(function (drugs) {
+            $scope.drugs = drugs;
+            socket.syncUpdates('drugs', $scope.drugs);
+        });
 
         $http.get('/api/things').success(function (awesomeThings) {
             $scope.awesomeThings = awesomeThings;
