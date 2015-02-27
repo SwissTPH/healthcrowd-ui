@@ -1,5 +1,5 @@
 'use strict';
-
+var removeMe;
 angular.module('tphPricesApp')
     .controller('PriceCtrl', function ($scope, $http, $upload, config, alertService, socket) {
         $scope.drugs = [];
@@ -7,8 +7,6 @@ angular.module('tphPricesApp')
         $scope.errors = {};
 
         $scope.addPrice = function (form) {
-            console.log('submitted', form, $scope.drug);
-
             if (!form.$valid) {
                 return;
             }
@@ -31,11 +29,6 @@ angular.module('tphPricesApp')
             console.log('response', response);
             //socket.syncUpdates('thing', $scope.products);
         });
-
-        //$http.get(config.REST_URL + 'projects/healthcrowd').success(function (response) {
-        //    console.log('response', response);
-            //socket.syncUpdates('thing', $scope.products);
-        //});
 
         $http.get(config.REST_URL + 'admin/projects/healthcrowd/assets').success(function (response) {
             console.log('response', response);
@@ -83,7 +76,7 @@ angular.module('tphPricesApp')
             prices.set(day, prices.get(day) + delta);
         };
 
-        setTimeout(randomlyUpdateForecast, 10000);
+        setInterval(randomlyUpdateForecast, 15000);
         //end of chart refactor
 
 
@@ -158,5 +151,16 @@ angular.module('tphPricesApp')
         $scope.$on('$destroy', function () {
             socket.unsyncUpdates('drug');
         });
-
+        removeMe = function (arg) {
+            console.log(arg, $scope.drugs);
+            var sameDiesase = $scope.drugs.filter(function (el) {
+                return el.name === arg;
+            });
+            var cheapest = _.sortBy(sameDiesase, function(el){
+                console.log(el.price);
+                return -1* Number(el.price);
+            })[0];
+            console.log(sameDiesase, cheapest);
+            return cheapest.price;
+        }
     });
